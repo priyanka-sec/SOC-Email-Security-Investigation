@@ -16,7 +16,9 @@
 
 ## 📌 Project Overview
 
-This project simulates a realistic SOC phishing investigation workflow commonly performed in enterprise environments.. It replicates the **exact SOC Analyst workflow** used in enterprise Security Operations Centres:
+This project simulates a realistic SOC phishing investigation workflow commonly performed in enterprise Security Operations Centres.
+
+The project demonstrates the complete investigation lifecycle of a phishing email incident, including attack simulation, email header forensics, IOC extraction, threat intelligence validation, MITRE ATT&CK mapping, and incident reporting:
 
 - Building an isolated lab environment with a live mail server
 - Executing a phishing attack using professional attack tooling (`swaks`)
@@ -178,6 +180,40 @@ Step 9 — Incident Report     →  Document full investigation professionally
 
 <br><br>
 
+## 🛡️ Detection Opportunities
+
+The following detection opportunities were identified during the phishing investigation:
+
+- Detect inbound emails containing internal IP-based URLs
+- Alert on suspicious `X-Mailer` values such as `swaks`
+- Monitor SPF/DKIM/DMARC authentication failures
+- Detect spoofed internal sender domains
+- Correlate repeated SMTP connections to mail server on port 25
+
+<br><br>
+
+## 📈 SIEM Detection Use Cases
+
+| Use Case | Logic |
+|----------|-------|
+| Suspicious X-Mailer Detection | Detect emails containing `swaks` in headers |
+| Internal Domain Spoofing | Alert when sender domain matches internal domain but fails SPF |
+| Suspicious URL Detection | Detect private/internal IP URLs inside email body |
+| SMTP Brute Activity | Monitor abnormal SMTP connections to port 25 |
+
+<br><br>
+
+## 🔐 Security Recommendations
+
+- Enforce SPF, DKIM, and DMARC policies
+- Block emails containing internal IP-based URLs
+- Restrict SMTP relay permissions
+- Implement secure email gateway filtering
+- Conduct phishing awareness training
+- Monitor anomalous SMTP traffic
+
+<br><br>
+
 ## 📄 Key Documents
 
 | Document | Description |
@@ -212,6 +248,6 @@ SOC Analyst L1 | Threat Detection & Incident Response
 
 <div align="center">
 
-*This project replicates the exact investigation workflow a SOC Analyst performs during a phishing email incident in a real enterprise Security Operations Centre.*
+*This project demonstrates a realistic SOC investigation workflow for analysing and responding to a phishing email incident in an enterprise environment.*
 
 </div>
