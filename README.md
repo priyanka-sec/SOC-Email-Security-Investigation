@@ -98,7 +98,7 @@ SOC-Email-Security-Investigation/
 | Mail Server | hMailServer | SMTP/POP3/IMAP mail server |
 | Attack Tool | swaks v20240103.0 | Phishing email delivery via SMTP |
 | Firewall | Windows Defender Firewall | Port 25 inbound rule configuration |
-| Forensics | Notepad (raw `.eml` analysis) | Email header extraction |
+| Forensics | Text-Based Email Header Analysis | Email header extraction |
 | Threat Intel | VirusTotal | IOC reputation validation |
 | Framework | MITRE ATT&CK Navigator | Technique mapping & visualisation |
 
