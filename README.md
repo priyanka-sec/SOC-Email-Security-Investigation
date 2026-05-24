@@ -16,7 +16,7 @@
 
 ## 📌 Project Overview
 
-This project simulates and investigates a **real-world phishing email attack** from end-to-end inside a controlled virtual lab. It replicates the **exact SOC Analyst workflow** used in enterprise Security Operations Centres:
+This project simulates a realistic SOC phishing investigation workflow commonly performed in enterprise environments.. It replicates the **exact SOC Analyst workflow** used in enterprise Security Operations Centres:
 
 - Building an isolated lab environment with a live mail server
 - Executing a phishing attack using professional attack tooling (`swaks`)
@@ -157,7 +157,7 @@ Step 9 — Incident Report     →  Document full investigation professionally
 |----------|-------|--------|------------|-------------|
 | IP Address | `192.168.56.10` | Email `Received` header | High | Attacker Machine |
 | Email Address | `attacker@lab.local` | `Return-Path` / `From` header | High | Spoofed Sender |
-| Email Address | `victime@lab.local` | `To` header | High | Victim / Target |
+| Email Address | `victim@lab.local` | `To` header | High | Victim / Target |
 | URL | `http://192.168.56.10/reset` | Email body | High | Fake Credential Page |
 | Tool Signature | `swaks v20240103.0` | `X-Mailer` header | High | Attack Tool Fingerprint |
 
