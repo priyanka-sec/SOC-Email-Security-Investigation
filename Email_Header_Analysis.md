@@ -45,12 +45,12 @@ Received: from kali (Unknown [192.168.56.10])
 |-----------|-------|----------------------|
 | `from kali` | Hostname declared by sending machine | Self-reported — attacker controlled, **cannot be trusted** |
 | `Unknown` | Reverse DNS result for sending IP | **No PTR record exists** — legitimate mail servers always have one. Absence is a red flag. |
-| `[192.168.56.10]` | **True originating IP of the attacker** | This is injected by the *receiving* server — cannot be spoofed. This is the most reliable forensic artifact in the entire header. |
+| `[192.168.56.10]` | **True originating IP of the attacker** | This field is added by the *receiving* mail server and is considered significantly more trustworthy than attacker-controlled fields. |
 | `by 192.168.56.110` | IP of the receiving mail server (victim) | Confirms our hMailServer instance received the email |
 | `with ESMTP` | Protocol used for delivery | Extended SMTP — standard delivery protocol |
 | Timestamp | `Wed, 6 May 2026 07:19:47 -0700` | Receiving server's timestamp (UTC-7) |
 
-> 🔍 **Analyst Note:** The `Received` field is always written by the **receiving mail server**, not the sender. This makes `192.168.56.10` the highest-confidence IOC in this investigation — it is the verified attacker IP and cannot be spoofed by the attacker.
+> 🔍 **Analyst Note:** The `Received` field is always written by the **receiving mail server**, not the sender. This makes `192.168.56.10` the highest-confidence IOC in this investigation because it was recorded by the receiving mail server and is considered a highly reliable forensic artifact.
 
 <br><br>
 
@@ -136,7 +136,7 @@ X-Mailer: swaks v20240103.0 jetmore.org/john/code/swaks/
 
 | Detail | Value | Forensic Significance |
 |--------|-------|-----------------------|
-| Tool identified | `swaks` (Swiss Army Knife for SMTP) | A command-line SMTP testing tool — **not a legitimate mail client** |
+| Tool identified | `swaks` (Swiss Army Knife for SMTP) | A command-line SMTP testing tool commonly associated with SMTP testing and scripted email delivery activity |
 | Version | `v20240103.0` | Specific build date: 3 January 2024 |
 | Source URL | `jetmore.org/john/code/swaks/` | Openly included — attacker did not strip this header |
 
@@ -226,8 +226,8 @@ password immediately: http://192.168.56.10/reset. Regards, IT Security Team
 ```
 19:49:46 IST  →  Attacker (192.168.56.10 / kali) initiates SMTP connection to 192.168.56.110:25
 19:49:46 IST  →  swaks delivers phishing email via ESMTP
-19:49:47 IST  →  hMailServer receives and stores email in victime mailbox
-19:49:47 IST  →  .eml file written to: C:\Program Files (x86)\hMailServer\Data\lab.local\victime\3B\
+19:49:47 IST  →  hMailServer receives and stores email in victim mailbox
+19:49:47 IST  →  .eml file written to: C:\Program Files (x86)\hMailServer\Data\lab.local\victim\3B\
 [Post-delivery] →  Victim would see: urgent subject line, IT Security Team branding, password reset link
 [If clicked]   →  Victim browser navigates to http://192.168.56.10/reset (credential harvesting page)
 ```
