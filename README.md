@@ -113,7 +113,7 @@ SOC-Email-Security-Investigation/
 │
 ├── 03_Email_Investigation/
 │   ├── Email_Header_Analysis.md                 ← Deep forensic header breakdown
-│   ├── Email_Authentication_Analysis.md         ← SPF / DKIM / DMARC findings
+│   ├── SPF_DKIM_DMARC_Analysis.md               ← SPF / DKIM / DMARC findings
 │   ├── IOC_Extraction.md                        ← All IOCs with confidence levels
 │   └── Threat_Intel_Enrichment.md               ← TI validation per IOC
 │
