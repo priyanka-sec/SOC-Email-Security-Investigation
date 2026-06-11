@@ -76,19 +76,19 @@ It simulates a real-world phishing attack — from the moment the attacker sends
 
 **Kali Linux — Network Configuration (eth0 NAT + eth1 Host-Only):**
 
-![Kali Linux IP Configuration](Screenshots/01_Lab_Setup/02_KaliLinux_IP_Address_eth0_eth1.jpg)
+![Kali Linux IP Configuration](Screenshots/02_KaliLinux_IP_Address_eth0_eth1.jpg)
 
 **Windows Server 2022 — Network Configuration (Both Adapters):**
 
-![Windows Server IP Configuration](Screenshots/01_Lab_Setup/03_WindowsServer_IPConfig_Both_Adapters.jpg)
+![Windows Server IP Configuration](Screenshots/03_WindowsServer_IPConfig_Both_Adapters.jpg)
 
 **Connectivity Verified — Kali → Windows Server:**
 
-![Kali Ping to Windows Server](Screenshots/01_Lab_Setup/04_KaliLinux_Ping_To_WindowsServer.jpg)
+![Kali Ping to Windows Server](Screenshots/04_KaliLinux_Ping_To_WindowsServer.jpg)
 
 **Connectivity Verified — Windows Server → Kali:**
 
-![Windows Server Ping to Kali](Screenshots/01_Lab_Setup/05_WindowsServer_Ping_To_KaliLinux.jpg)
+![Windows Server Ping to Kali](Screenshots/05_WindowsServer_Ping_To_KaliLinux.jpg)
 
 <br><br>
 
@@ -164,15 +164,15 @@ SOC-Email-Security-Investigation/
 
 **Phishing email successfully sent from Kali Linux using swaks:**
 
-![Phishing Email Sent](Screenshots/02_Attack_Simulation/13_KaliLinux_Phishing_Email_Sent.jpg)
+![Phishing Email Sent](Screenshots/13_KaliLinux_Phishing_Email_Sent.jpg)
 
 **Email received and logged by hMailServer:**
 
-![hMailServer Email Received Logs](Screenshots/02_Attack_Simulation/14_hMailServer_Email_Received_Logs.jpg)
+![hMailServer Email Received Logs](Screenshots/14_hMailServer_Email_Received_Logs.jpg)
 
 **Wireshark capturing live SMTP traffic during the attack:**
 
-![Wireshark SMTP Traffic](Screenshots/02_Attack_Simulation/20_Wireshark_SMTP_Email_Traffic.jpg)
+![Wireshark SMTP Traffic](Screenshots/20_Wireshark_SMTP_Email_Traffic.jpg)
 
 <br><br>
 
@@ -204,15 +204,15 @@ SOC-Email-Security-Investigation/
 
 **Raw email header extracted — attacker IP identified:**
 
-![Email Raw Header Extraction](Screenshots/03_Email_Forensics/15_Email_Raw_Header_Extraction.jpg)
+![Email Raw Header Extraction](Screenshots/15_Email_Raw_Header_Extraction.jpg)
 
 **Attacker IP `192.168.56.10` confirmed in Received header:**
 
-![Attacker IP Identification](Screenshots/03_Email_Forensics/15(a)_Attacker_IP_Identification.jpg)
+![Attacker IP Identification](Screenshots/15(a)_Attacker_IP_Identification.jpg)
 
 **Full email investigation findings:**
 
-![Email Investigation Findings](Screenshots/03_Email_Forensics/23_Email_Investigation_Findings.jpg)
+![Email Investigation Findings](Screenshots/23_Email_Investigation_Findings.jpg)
 
 <br><br>
 
@@ -243,19 +243,19 @@ One of the key goals of this lab was to configure real email authentication cont
 
 **DNS authentication records configured in Windows DNS Server:**
 
-![DNS Email Authentication Records](Screenshots/03_Email_Forensics/28_DNS_Email_Authentication_Records.jpg)
+![DNS Email Authentication Records](Screenshots/28_DNS_Email_Authentication_Records.jpg)
 
 **SPF record validated:**
 
-![SPF Validation](Screenshots/03_Email_Forensics/27_SPF_Validation.jpg)
+![SPF Validation](Screenshots/27_SPF_Validation.jpg)
 
 **DMARC record validated:**
 
-![DMARC Validation](Screenshots/03_Email_Forensics/27(a)_DMARC_Validation.jpg)
+![DMARC Validation](Screenshots/27(a)_DMARC_Validation.jpg)
 
 **DKIM simulation record validated:**
 
-![DKIM Validation](Screenshots/03_Email_Forensics/27(b)_DKIM_Validation.jpg)
+![DKIM Validation](Screenshots/27(b)_DKIM_Validation.jpg)
 
 > 📖 Full configuration details: [`01_Lab_Infrastructure/DNS_Configuration.md`](./01_Lab_Infrastructure/DNS_Configuration.md)
 
@@ -276,11 +276,11 @@ One of the key goals of this lab was to configure real email authentication cont
 
 **Attacker IP validated on VirusTotal:**
 
-![VirusTotal Attacker IP Validation](Screenshots/04_Threat_Intelligence/16_VirusTotal_Attacker_IP_Validation.jpg)
+![VirusTotal Attacker IP Validation](Screenshots/16_VirusTotal_Attacker_IP_Validation.jpg)
 
 **Malicious URL validated on VirusTotal:**
 
-![VirusTotal Malicious URL Validation](Screenshots/04_Threat_Intelligence/16(a)_VirusTotal_Malicious_URL_Validation.jpg)
+![VirusTotal Malicious URL Validation](Screenshots/16(a)_VirusTotal_Malicious_URL_Validation.jpg)
 
 > 📖 Full IOC analysis: [`03_Email_Investigation/IOC_Extraction.md`](./03_Email_Investigation/IOC_Extraction.md)
 
@@ -296,11 +296,11 @@ One of the key goals of this lab was to configure real email authentication cont
 
 **MITRE T1566 technique mapped:**
 
-![MITRE T1566 Mapping](Screenshots/05_MITRE_ATTACK/17_MITRE_T1566_Mapping.jpg)
+![MITRE T1566 Mapping](Screenshots/17_MITRE_T1566_Mapping.jpg)
 
 **ATT&CK Navigator with T1566 highlighted:**
 
-![ATT&CK Navigator](Screenshots/05_MITRE_ATTACK/18_ATTACK_Navigator_T1566_Highlighted.jpg)
+![ATT&CK Navigator](Screenshots/18_ATTACK_Navigator_T1566_Highlighted.jpg)
 
 > 📖 Full mapping with detection logic: [`05_Detection_Engineering/MITRE_ATT&CK_Mapping.md`](./05_Detection_Engineering/MITRE_ATT&CK_Mapping.md)
 
@@ -310,19 +310,19 @@ One of the key goals of this lab was to configure real email authentication cont
 
 **Sysmon network connection events captured during attack:**
 
-![Sysmon Network Connection Events](Screenshots/01_Lab_Setup/19_Sysmon_Network_Connection_Events.jpg)
+![Sysmon Network Connection Events](Screenshots/19_Sysmon_Network_Connection_Events.jpg)
 
 **Wireshark PCAP file saved for forensic preservation:**
 
-![Wireshark PCAP Saved](Screenshots/02_Attack_Simulation/21_Wireshark_PCAP_Saved.jpg)
+![Wireshark PCAP Saved](Screenshots/21_Wireshark_PCAP_Saved.jpg)
 
 **End-to-end email flow validated:**
 
-![End-to-End Email Flow Validation](Screenshots/03_Email_Forensics/25_End_to_End_Email_Flow_Validation.jpg)
+![End-to-End Email Flow Validation](Screenshots/25_End_to_End_Email_Flow_Validation.jpg)
 
 **Full investigation timeline reconstructed:**
 
-![Email Investigation Timeline](Screenshots/03_Email_Forensics/24_Email_Investigation_Timeline.jpg)
+![Email Investigation Timeline](Screenshots/24_Email_Investigation_Timeline.jpg)
 
 > 📖 Full log analysis: [`04_Log_Analysis/`](./04_Log_Analysis/)
 
@@ -361,15 +361,15 @@ This project also documents how **AI tools were used to accelerate SOC investiga
 
 **All required tools verified installed on Kali Linux:**
 
-![Kali Linux Tools Installed](Screenshots/01_Lab_Setup/06_KaliLinux_Required_Tools_Installed.jpg)
+![Kali Linux Tools Installed](Screenshots/06_KaliLinux_Required_Tools_Installed.jpg)
 
 **Sysmon installation verified on Windows Server:**
 
-![Sysmon Installation Verification](Screenshots/01_Lab_Setup/07_WindowsServer_Sysmon_Installation_Verification.jpg)
+![Sysmon Installation Verification](Screenshots/07_WindowsServer_Sysmon_Installation_Verification.jpg)
 
 **Sysmon service confirmed running:**
 
-![Sysmon Service Running](Screenshots/01_Lab_Setup/07(a)_WindowsServer_Sysmon_Service_Running.jpg)
+![Sysmon Service Running](Screenshots/07(a)_WindowsServer_Sysmon_Service_Running.jpg)
 
 <br><br>
 
@@ -386,7 +386,7 @@ This project also documents how **AI tools were used to accelerate SOC investiga
 
 **Investigation completed — full workflow validated:**
 
-![Email Investigation Completed](Screenshots/03_Email_Forensics/26_Email_Investigation_Completed.jpg)
+![Email Investigation Completed](Screenshots/26_Email_Investigation_Completed.jpg)
 
 <br><br>
 
