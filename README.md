@@ -72,7 +72,7 @@ It simulates a real-world phishing attack — from the moment the attacker sends
 
 **Both VMs running in VirtualBox:**
 
-![Both VMs Running](Screenshots/01_Lab_Setup/01_VirtualBox_Both_VMs_Running.png)
+![Both VMs Running](Screenshots/01_VirtualBox_Both_VMs_Running.png)
 
 **Kali Linux — Network Configuration (eth0 NAT + eth1 Host-Only):**
 
