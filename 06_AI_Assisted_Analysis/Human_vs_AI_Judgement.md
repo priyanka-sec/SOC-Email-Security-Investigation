@@ -35,19 +35,12 @@ AI excels at processing information quickly.
 ### AI Strengths
 
 ✅ Rapid data analysis
-
 ✅ Pattern recognition
-
 ✅ IOC enrichment
-
 ✅ Log summarization
-
 ✅ Documentation assistance
-
 ✅ Detection rule drafting
-
 ✅ Query generation
-
 ✅ MITRE ATT&CK recommendations
 
 ### Example
