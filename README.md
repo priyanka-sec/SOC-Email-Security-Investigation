@@ -398,7 +398,7 @@ This project also documents how **AI tools were used to accelerate SOC investiga
 | [`Email_Header_Analysis.md`](./03_Email_Investigation/Email_Header_Analysis.md) | Full annotated forensic header breakdown |
 | [`Sigma_Rules.md`](./05_Detection_Engineering/Sigma_Rules.md) | Production-ready Sigma detection rules |
 | [`Investigation_Timeline.md`](./04_Log_Analysis/Investigation_Timeline.md) | Chronological reconstruction of the entire attack |
-| [`Human_vs_AI_Judgement.md`](./06_AI_Assisted_Analysis/Human_vs_AI_Judgment.md) | Where AI helped and where human judgment was essential |
+| [`Human_vs_AI_Judgement.md`](./06_AI_Assisted_Analysis/Human_vs_AI_Judgement.md) | Where AI helped and where human judgment was essential |
 
 <br><br>
 
