@@ -1,1 +1,42 @@
+Return-Path: [attacker@lab.local](mailto:attacker@lab.local)
+Received: from kali (192.168.56.10)
+by mail.lab.local with SMTP;
+Sun, 07 Jun 2026 19:30:15 +0530
+Message-ID: [20260607193015.12345@kali.lab.local](mailto:20260607193015.12345@kali.lab.local)
+Date: Sun, 07 Jun 2026 19:30:15 +0530
+From: "IT Support Team" [attacker@lab.local](mailto:attacker@lab.local)
+To: [victim@lab.local](mailto:victim@lab.local)
+Subject: Password Expiry Notification
+MIME-Version: 1.0
+Content-Type: text/html; charset=UTF-8
+X-Mailer: swaks v20240103.0
+
+<html>
+<head>
+<title>Password Expiry Notification</title>
+</head>
+
+<body>
+
+<p>Dear User,</p>
+
+<p>Your corporate account password will expire within the next 24 hours.</p>
+
+<p>Failure to update your password may result in temporary loss of access to email and internal services.</p>
+
+<p>Please use the secure link below to update your credentials immediately:</p>
+
+<p>
+<a href="http://192.168.56.10/reset">
+Reset Password
+</a>
+</p>
+
+<p>If you have already updated your password, please ignore this message.</p>
+
+<p>Regards,<br>
+IT Support Team</p>
+
+</body>
+</html>
 
