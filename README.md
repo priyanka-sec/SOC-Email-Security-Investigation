@@ -1,33 +1,74 @@
 <div align="center">
 
-# 🛡️ SOC Email Security Investigation
-### Phishing Attack Simulation · Email Forensics · MITRE ATT&CK T1566 · Incident Response
+# 🛡️ SOC Email Security Investigation Lab
+
+### A Complete End-to-End Phishing Attack Simulation & SOC Investigation Portfolio
 
 [![Platform](https://img.shields.io/badge/Platform-VirtualBox-blue?style=flat-square&logo=virtualbox)](https://www.virtualbox.org/)
-[![Attacker OS](https://img.shields.io/badge/Attacker-Kali%20Linux-red?style=flat-square&logo=kalilinux)](https://www.kali.org/)
-[![Victim OS](https://img.shields.io/badge/Victim-Windows%20Server%202022-0078D4?style=flat-square&logo=windows)](https://www.microsoft.com/)
+[![Attacker](https://img.shields.io/badge/Attacker-Kali%20Linux-red?style=flat-square&logo=kalilinux)](https://www.kali.org/)
+[![Victim](https://img.shields.io/badge/Victim-Windows%20Server%202022-0078D4?style=flat-square&logo=windows)](https://www.microsoft.com/)
 [![Mail Server](https://img.shields.io/badge/Mail%20Server-hMailServer-grey?style=flat-square)](https://www.hmailserver.com/)
-[![MITRE](https://img.shields.io/badge/MITRE%20ATT%26CK-T1566%20Phishing-orange?style=flat-square)](https://attack.mitre.org/techniques/T1566/)
+[![DNS](https://img.shields.io/badge/DNS-Windows%20DNS%20Server-0078D4?style=flat-square&logo=windows)](https://docs.microsoft.com/)
+[![Sysmon](https://img.shields.io/badge/Logging-Sysmon-purple?style=flat-square)](https://learn.microsoft.com/en-us/sysinternals/downloads/sysmon)
+[![Wireshark](https://img.shields.io/badge/PCAP-Wireshark-1679A7?style=flat-square&logo=wireshark)](https://www.wireshark.org/)
+[![MITRE](https://img.shields.io/badge/MITRE%20ATT%26CK-T1566.002-orange?style=flat-square)](https://attack.mitre.org/techniques/T1566/002/)
 [![Status](https://img.shields.io/badge/Status-Completed-brightgreen?style=flat-square)]()
 
 </div>
 
 <br><br>
 
-## 📌 Project Overview
+## 📌 What Is This Project?
 
-This project simulates a realistic SOC phishing investigation workflow commonly performed in enterprise Security Operations Centres.
+This project is a **complete SOC (Security Operations Centre) investigation lab** built from scratch inside a virtual environment.
 
-The project demonstrates the complete investigation lifecycle of a phishing email incident, including attack simulation, email header forensics, IOC extraction, threat intelligence validation, MITRE ATT&CK mapping, and incident reporting:
+It simulates a real-world phishing attack — from the moment the attacker sends the email, all the way through to the final incident report and remediation plan. Every step follows the exact workflow a **SOC Analyst** would perform in an enterprise environment.
 
-- Building an isolated lab environment with a live mail server
-- Executing a phishing attack using professional attack tooling (`swaks`)
-- Performing raw email header forensics to identify the attacker's true IP
-- Extracting and validating all Indicators of Compromise (IOCs)
-- Mapping the attack to MITRE ATT&CK framework (T1566.002)
-- Producing a formal SOC Incident Report
+> 💡 **Why this matters for SOC roles:** Phishing is the #1 initial access technique used in cyber attacks worldwide (MITRE ATT&CK T1566). Every SOC Analyst — at every company — investigates phishing emails. This project proves you can do exactly that.
 
-> **Target Role Alignment:** SOC Analyst L1/L2 · Threat Detection · Email Security · Incident Response
+<br><br>
+
+## 🎯 What This Lab Demonstrates
+
+| Skill Area | What Was Done |
+|------------|---------------|
+| **Lab Engineering** | Built isolated virtual lab with Windows Server 2022, Kali Linux, DNS Server, hMailServer, Sysmon |
+| **Attack Simulation** | Executed phishing attack using `swaks` with social engineering techniques |
+| **Network Forensics** | Captured and analysed SMTP traffic using Wireshark PCAP |
+| **Email Forensics** | Full raw header analysis — extracted attacker IP, tool fingerprint, timestamp analysis |
+| **Email Authentication** | Configured and validated SPF, DKIM simulation, and DMARC records in DNS |
+| **Log Analysis** | Investigated hMailServer SMTP logs and Sysmon Windows event logs |
+| **IOC Extraction** | Extracted and classified all Indicators of Compromise with confidence levels |
+| **Threat Intelligence** | Enriched IOCs using VirusTotal, MITRE ATT&CK, and TI validation workflow |
+| **Detection Engineering** | Wrote Sigma detection rules and SIEM use cases (SPL/KQL) |
+| **MITRE ATT&CK Mapping** | Mapped full attack to T1566.002 with data sources, detection logic, and mitigations |
+| **AI-Assisted Analysis** | Used AI tools (Claude, ChatGPT) to accelerate IOC enrichment, report drafting, and Sigma rule generation — with human validation |
+| **Incident Response** | Produced enterprise-grade SOC Incident Report, Remediation Plan, and Lessons Learned |
+
+<br><br>
+
+## 🏗️ Lab Architecture
+
+```
+┌─────────────────────────────────────────────────────────────────────┐
+│                        VirtualBox Host Machine                      │
+│                                                                     │
+│   ┌──────────────────────┐          ┌───────────────────────────┐   │
+│   │    Kali Linux        │          │   Windows Server 2022     │   │
+│   │    ATTACKER          │          │   VICTIM / MAIL SERVER    │   │
+│   │                      │          │                           │   │
+│   │  IP: 192.168.56.10   │─SMTP:25─▶│  IP: 192.168.56.110      │   │
+│   │                      │          │                           │   │
+│   │  Tools:              │          │  Services Running:        │   │
+│   │  • swaks             │          │  • hMailServer (SMTP)     │   │
+│   │  • Wireshark         │          │  • DNS Server             │   │
+│   │                      │          │  • Sysmon                 │   │
+│   └──────────────────────┘          │  • Windows Event Logging  │   │
+│                                     └───────────────────────────┘   │
+│                                                                     │
+│              Host-Only Network: 192.168.56.0/24                     │
+└─────────────────────────────────────────────────────────────────────┘
+```
 
 <br><br>
 
@@ -36,181 +77,185 @@ The project demonstrates the complete investigation lifecycle of a phishing emai
 ```
 SOC-Email-Security-Investigation/
 │
-├── 01_Lab_Setup/
-│   ├── Lab_Setup_Guide.md               # VM config, network, hMailServer setup
-│   ├── Network_Topology_Diagram.png     # Visual lab architecture
-│   └── hMailServer_Config.md            # Mail server configuration steps
+├── README.md                                    ← You are here
+│
+├── 01_Lab_Infrastructure/
+│   ├── Lab_Setup_Guide.md                       ← Full VM + network setup
+│   ├── hMailServer_Config.md                    ← Mail server configuration
+│   ├── DNS_Configuration.md                     ← DNS zone + SPF/DKIM/DMARC
+│   ├── Sysmon_Configuration.md                  ← Sysmon rules + event logging
+│   └── Network_Topology_Diagram.png             ← Visual lab architecture
 │
 ├── 02_Attack_Simulation/
-│   ├── Attack_Scenario.md               # swaks command, spoofing technique
-│   └── phishing_email_sample.eml        # Sanitized raw phishing email file
+│   ├── Attack_Scenario.md                       ← Full attack narrative + swaks command
+│   ├── phishing_email_sample.eml                ← Raw phishing email artifact
+│   └── Wireshark_Analysis.md                    ← PCAP + SMTP traffic analysis
 │
-├── 03_Email_Forensics/
-│   ├── Email_Header_Analysis.md         # Full annotated header breakdown
-│   ├── Header_Screenshot.png            # Screenshot of raw .eml in Notepad
-│   └── SPF_DKIM_DMARC_Analysis.md       # Email auth failure analysis
+├── 03_Email_Investigation/
+│   ├── Email_Header_Analysis.md                 ← Deep forensic header breakdown
+│   ├── Email_Authentication_Analysis.md         ← SPF / DKIM / DMARC findings
+│   ├── IOC_Extraction.md                        ← All IOCs with confidence levels
+│   └── Threat_Intel_Enrichment.md               ← TI validation per IOC
 │
-├── 04_IOC_Extraction/
-│   ├── IOC_Table.md                     # IOC table with confidence & disposition
-│   └── VirusTotal_Results/              # Screenshots of VT lookups
+├── 04_Log_Analysis/
+│   ├── hMailServer_Log_Analysis.md              ← SMTP log investigation
+│   ├── Sysmon_Log_Analysis.md                   ← Windows event log analysis
+│   └── Investigation_Timeline.md               ← Chronological attack reconstruction
 │
-├── 05_Threat_Intelligence/
-│   ├── Threat_Intel_Summary.md          # TI platform findings
-│   └── IOC_Validation_Process.md        # Step-by-step IOC validation
+├── 05_Detection_Engineering/
+│   ├── Detection_Opportunities.md               ← Where detections could fire
+│   ├── Sigma_Rules.md                           ← Production-ready Sigma rules
+│   ├── SIEM_Use_Cases.md                        ← SPL and KQL queries
+│   └── MITRE_ATT&CK_Mapping.md                  ← Full framework mapping
 │
-├── 06_MITRE_ATT&CK/
-│   ├── MITRE_Mapping.md                 # Full T1566 mapping with detection logic
-│   └── ATT&CK_Navigator_Export.json     # Navigator layer export
+├── 06_AI_Assisted_Analysis/
+│   ├── AI_in_SOC_Overview.md                    ← AI's role in modern SOC
+│   ├── AI_Assisted_IOC_Enrichment.md            ← AI-accelerated IOC analysis
+│   ├── AI_Assisted_Report_Writing.md            ← AI-drafted IR report workflow
+│   ├── AI_Assisted_Sigma_Rule_Generation.md     ← AI + human Sigma validation
+│   └── Human_vs_AI_Judgment.md                  ← Where human judgment is essential
 │
-├── 07_Incident_Report/
-│   ├── SOC_Incident_Report.md           # Markdown IR report
-│   └── SOC_Incident_Report.pdf          # PDF version for download
-│
-├── 08_Lessons_Learned/
-│   └── Lessons_Learned.md               # Analyst reflection & SIEM rule ideas
+├── 07_Incident_Response/
+│   ├── SOC_Incident_Report.md                   ← Enterprise-grade IR report
+│   ├── Remediation_Plan.md                      ← Technical remediation steps
+│   └── Lessons_Learned.md                       ← Analyst reflection
 │
 └── Screenshots/
-    └── INDEX.md                         # Captioned index of all screenshots
+    └── INDEX.md                                 ← Captioned screenshot index
 ```
 
 <br><br>
 
-## 🎯 Objectives
+## ⚔️ Attack Scenario Summary
 
-| # | Objective | Status |
-|---|-----------|--------|
-| 1 | Build an isolated virtual lab with a live SMTP mail server | ✅ Complete |
-| 2 | Simulate a phishing email attack using `swaks` from Kali Linux | ✅ Complete |
-| 3 | Forensically analyse raw email headers to extract attacker IP | ✅ Complete |
-| 4 | Extract all IOCs from email header and body | ✅ Complete |
-| 5 | Validate IOCs using VirusTotal threat intelligence | ✅ Complete |
-| 6 | Analyse SPF/DKIM/DMARC failures as attack enablers | ✅ Complete |
-| 7 | Map the attack to MITRE ATT&CK T1566.002 — Spearphishing Link | ✅ Complete |
-| 8 | Produce a professional enterprise-grade SOC Incident Report | ✅ Complete |
-
-<br><br>
-
-## 🧰 Tools & Technologies
-
-| Category | Tool | Purpose |
-|----------|------|---------|
-| Virtualisation | Oracle VM VirtualBox | Isolated lab environment |
-| Attacker Machine | Kali Linux | Attack simulation platform |
-| Victim Machine | Windows Server 2022 | Target mail server host |
-| Mail Server | hMailServer | SMTP/POP3/IMAP mail server |
-| Attack Tool | swaks v20240103.0 | Phishing email delivery via SMTP |
-| Firewall | Windows Defender Firewall | Port 25 inbound rule configuration |
-| Forensics | Text-Based Email Header Analysis | Email header extraction |
-| Threat Intel | VirusTotal | IOC reputation validation |
-| Framework | MITRE ATT&CK Navigator | Technique mapping & visualisation |
-
-<br><br>
-
-## 🗺️ Lab Network Topology
-
-```
-┌──────────────────────────┐              ┌──────────────────────────────┐
-│       Kali Linux         │              │    Windows Server 2022       │
-│    Attacker Machine      │              │    Victim Mail Server        │
-│                          │              │                              │
-│  NAT IP : 10.0.3.15      │──SMTP:25────▶│  NAT IP  : 10.0.3.14        │
-│  H-Only : 192.168.56.10  │              │  H-Only  : 192.168.56.110    │
-│                          │              │  hMailServer (running)       │
-└──────────────────────────┘              └──────────────────────────────┘
-     Adapter 1: NAT                              Adapter 1: NAT
-     Adapter 2: Host-Only                        Adapter 2: Host-Only
-```
-
-<br><br>
-
-## ⚔️ Attack Scenario
-
-**Technique:** MITRE ATT&CK T1566.002 — Spearphishing Link  
-**Tool Used:** `swaks` (Swiss Army Knife for SMTP)
-
-The attacker on Kali Linux crafted and delivered a spoofed phishing email to a victim mailbox on Windows Server 2022, simulating a **credential harvesting phishing campaign**:
-
-- **Spoofed sender:** `attacker@lab.local` (fake trusted identity)
-- **Subject line:** `Urgent: Reset Your Password Immediately` (social engineering via urgency)
-- **Payload:** Embedded fake password reset URL — `http://192.168.56.10/reset`
-- **Delivery:** Direct SMTP connection to port 25 on the victim mail server
+| Detail | Value |
+|--------|-------|
+| **Attack Type** | Phishing — Credential Harvesting |
+| **MITRE Technique** | T1566.002 — Spearphishing Link |
+| **Attacker Machine** | Kali Linux — `192.168.56.10` |
+| **Victim Mail Server** | Windows Server 2022 — `192.168.56.110` |
+| **Attack Tool** | `swaks` v20240103.0 |
+| **Email Lure** | Fake password expiry notification — social engineering via urgency |
+| **Payload** | Malicious URL embedded in email body |
+| **Delivery Method** | Direct SMTP connection to port 25 |
+| **Email Authentication** | SPF ✅ Configured | DKIM ✅ Simulated | DMARC ✅ Configured (p=reject) |
 
 <br><br>
 
 ## 🔍 Investigation Workflow
 
 ```
-Step 1 — Lab Setup           →  Configure VMs, network, hMailServer, firewall rule
-Step 2 — Attack Simulation   →  Send phishing email via swaks from Kali Linux
-Step 3 — Email Discovery     →  Locate .eml file in hMailServer mailbox directory
-Step 4 — Header Forensics    →  Extract true attacker IP from Received field
-Step 5 — IOC Extraction      →  Identify all indicators from header + body
-Step 6 — Auth Analysis       →  Confirm SPF/DKIM/DMARC absence as attack enabler
-Step 7 — Threat Intel        →  Validate IOCs on VirusTotal
-Step 8 — MITRE Mapping       →  Map to T1566.002 — Spearphishing Link
-Step 9 — Incident Report     →  Document full investigation professionally
+┌─────────────────────────────────────────────────────────────────┐
+│                    SOC INVESTIGATION FLOW                       │
+└─────────────────────────────────────────────────────────────────┘
+
+  PHASE 1 — DETECTION          PHASE 2 — INVESTIGATION
+  ┌─────────────────┐          ┌──────────────────────────────┐
+  │ Phishing email  │          │ Email header forensics       │
+  │ arrives in      │─────────▶│ SPF/DKIM/DMARC analysis      │
+  │ victim mailbox  │          │ IOC extraction               │
+  └─────────────────┘          │ Threat intel enrichment      │
+                               └──────────────┬───────────────┘
+                                              │
+  PHASE 4 — RESPONSE           PHASE 3 — ANALYSIS
+  ┌─────────────────┐          ┌──────────────────────────────┐
+  │ Incident report │          │ hMailServer log analysis     │
+  │ Remediation     │◀─────────│ Sysmon event log analysis    │
+  │ Lessons learned │          │ Wireshark PCAP analysis      │
+  └─────────────────┘          │ Attack timeline              │
+                               │ Detection engineering        │
+                               │ MITRE ATT&CK mapping         │
+                               └──────────────────────────────┘
 ```
+
+<br><br>
+
+## 🔐 Email Authentication Configuration
+
+One of the key goals of this lab was to configure real email authentication controls and understand how their absence enables phishing attacks.
+
+| Protocol | Record Configured | Value |
+|----------|------------------|-------|
+| **SPF** | ✅ Yes — DNS TXT record | `v=spf1 ip4:192.168.56.110 -all` |
+| **DKIM** | ✅ Simulated — DNS TXT record | `selector1._domainkey.lab.local` |
+| **DMARC** | ✅ Yes — DNS TXT record | `v=DMARC1; p=reject; rua=mailto:admin@lab.local` |
+
+> 📖 Full configuration details: [`01_Lab_Infrastructure/DNS_Configuration.md`](./01_Lab_Infrastructure/DNS_Configuration.md)
 
 <br><br>
 
 ## 📊 IOC Summary
 
-| IOC Type | Value | Source | Confidence | Disposition |
-|----------|-------|--------|------------|-------------|
-| IP Address | `192.168.56.10` | Email `Received` header | High | Attacker Machine |
-| Email Address | `attacker@lab.local` | `Return-Path` / `From` header | High | Spoofed Sender |
-| Email Address | `victim@lab.local` | `To` header | High | Victim / Target |
-| URL | `http://192.168.56.10/reset` | Email body | High | Fake Credential Page |
-| Tool Signature | `swaks v20240103.0` | `X-Mailer` header | High | Attack Tool Fingerprint |
+| # | Type | Value | Confidence | Disposition |
+|---|------|-------|------------|-------------|
+| 1 | IP Address | `192.168.56.10` | 🔴 High | Attacker Machine |
+| 2 | IP Address | `192.168.56.110` | 🔴 High | Victim Mail Server |
+| 3 | Email Address | `attacker@lab.local` | 🔴 High | Spoofed Sender |
+| 4 | Email Address | `victim@lab.local` | 🔴 High | Targeted Victim |
+| 5 | URL | `http://192.168.56.10/reset` | 🔴 High | Credential Harvesting Page |
+| 6 | Hostname | `kali` | 🟠 Medium | Attacker Hostname |
+| 7 | Tool Signature | `swaks v20240103.0` | 🔴 High | Attack Tool Fingerprint |
+| 8 | Subject Pattern | Fake password expiry lure | 🟡 Medium | Social Engineering Indicator |
+
+> 📖 Full IOC analysis: [`03_Email_Investigation/IOC_Extraction.md`](./03_Email_Investigation/IOC_Extraction.md)
 
 <br><br>
 
-## 🧠 MITRE ATT&CK Mapping
+## 🧠 MITRE ATT&CK Coverage
 
-| Field | Detail |
-|-------|--------|
-| **Tactic** | Initial Access (TA0001) |
-| **Technique** | T1566 — Phishing |
-| **Sub-technique** | T1566.002 — Spearphishing Link |
-| **Data Sources** | Network Traffic, Application Log, Email Gateway |
-| **Detection** | Email header anomalies, X-Mailer fingerprint, mismatched `Received` IP |
-| **Mitigation** | M1054 — SPF/DKIM/DMARC enforcement |
-| **Mitigation** | M1017 — User Training |
-| **Mitigation** | M1021 — Restrict Web-Based Content |
+| Tactic | Technique | Sub-Technique | Observed |
+|--------|-----------|---------------|----------|
+| Initial Access | T1566 — Phishing | T1566.002 — Spearphishing Link | ✅ |
+| Reconnaissance | T1598 — Phishing for Info | T1598.003 — Spearphishing Link | ✅ |
+| Defense Evasion | T1036 — Masquerading | T1036.005 — Match Legitimate Name | ✅ |
+
+> 📖 Full mapping with detection logic: [`05_Detection_Engineering/MITRE_ATT&CK_Mapping.md`](./05_Detection_Engineering/MITRE_ATT&CK_Mapping.md)
 
 <br><br>
 
-## 🛡️ Detection Opportunities
+## 🤖 AI-Assisted Analysis
 
-The following detection opportunities were identified during the phishing investigation:
+This project also documents how **AI tools were used to accelerate SOC investigation tasks** — reflecting the reality of modern SOC operations in 2025/2026.
 
-- Detect inbound emails containing internal IP-based URLs
-- Alert on suspicious `X-Mailer` values such as `swaks`
-- Monitor SPF/DKIM/DMARC authentication failures
-- Detect spoofed internal sender domains
-- Correlate repeated SMTP connections to mail server on port 25
+| AI Task | Tool Used | Human Validation Applied |
+|---------|-----------|--------------------------|
+| IOC extraction from raw header | Claude | ✅ Verified every IOC against raw .eml |
+| Initial Sigma rule drafting | Claude / ChatGPT | ✅ Tested logic against actual log data |
+| IR report structure and drafting | Claude | ✅ Rewrote sections AI got wrong |
+| MITRE technique suggestions | Claude | ✅ Cross-checked against ATT&CK Navigator |
 
-<br><br>
-
-## 📈 SIEM Detection Use Cases
-
-| Use Case | Logic |
-|----------|-------|
-| Suspicious X-Mailer Detection | Detect emails containing `swaks` in headers |
-| Internal Domain Spoofing | Alert when sender domain matches internal domain but fails SPF |
-| Suspicious URL Detection | Detect private/internal IP URLs inside email body |
-| SMTP Brute Activity | Monitor abnormal SMTP connections to port 25 |
+> 📖 Full AI workflow with prompts and outputs: [`06_AI_Assisted_Analysis/`](./06_AI_Assisted_Analysis/)
 
 <br><br>
 
-## 🔐 Security Recommendations
+## 🛠️ Tools & Technologies
 
-- Enforce SPF, DKIM, and DMARC policies
-- Block emails containing internal IP-based URLs
-- Restrict SMTP relay permissions
-- Implement secure email gateway filtering
-- Conduct phishing awareness training
-- Monitor anomalous SMTP traffic
+| Category | Tool | Purpose |
+|----------|------|---------|
+| Virtualisation | Oracle VM VirtualBox | Isolated lab environment |
+| Attacker OS | Kali Linux | Attack simulation platform |
+| Victim OS | Windows Server 2022 | Mail server + DNS + logging host |
+| Mail Server | hMailServer | SMTP/POP3 mail server |
+| DNS Server | Windows DNS Server | Hosts SPF, DKIM, DMARC records |
+| Endpoint Logging | Sysmon (Sysinternals) | Process, network, DNS event logging |
+| Network Capture | Wireshark | PCAP — SMTP traffic analysis |
+| Attack Tool | swaks v20240103.0 | Phishing email delivery |
+| Detection | Sigma | Vendor-agnostic detection rules |
+| Framework | MITRE ATT&CK Navigator | Technique mapping and visualisation |
+| AI Tools | Claude, ChatGPT | Investigation acceleration + validation |
+
+<br><br>
+
+## 🚦 Investigation Outcome
+
+| Finding | Detail |
+|---------|--------|
+| **Attack succeeded?** | ✅ Email delivered — no controls blocked delivery initially |
+| **Root cause** | SPF/DKIM/DMARC were configured *after* the attack to demonstrate before vs after |
+| **Attacker identified?** | ✅ `192.168.56.10` confirmed via `Received` header |
+| **Tool identified?** | ✅ `swaks v20240103.0` via `X-Mailer` header |
+| **Detection rule created?** | ✅ Sigma rule for X-Mailer + direct SMTP |
+| **Remediation documented?** | ✅ SPF/DKIM/DMARC enforcement + SIEM alerting |
 
 <br><br>
 
@@ -218,36 +263,62 @@ The following detection opportunities were identified during the phishing invest
 
 | Document | Description |
 |----------|-------------|
-| [`Email_Header_Analysis.md`](./03_Email_Forensics/Email_Header_Analysis.md) | Full annotated forensic breakdown of the phishing email header |
-| [`IOC_Table.md`](./04_IOC_Extraction/IOC_Table.md) | All IOCs with confidence levels and disposition |
-| [`MITRE_Mapping.md`](./06_MITRE_ATT%26CK/MITRE_Mapping.md) | T1566.002 mapping with detection logic and data sources |
-| [`SOC_Incident_Report.md`](./07_Incident_Report/SOC_Incident_Report.md) | Enterprise-grade incident report (exec summary → remediation) |
-| [`Lessons_Learned.md`](./08_Lessons_Learned/Lessons_Learned.md) | Analyst reflection, SIEM rule concepts, future improvements |
+| [`SOC_Incident_Report.md`](./07_Incident_Response/SOC_Incident_Report.md) | Enterprise-grade incident report — executive summary to remediation |
+| [`Email_Header_Analysis.md`](./03_Email_Investigation/Email_Header_Analysis.md) | Full annotated forensic header breakdown |
+| [`Sigma_Rules.md`](./05_Detection_Engineering/Sigma_Rules.md) | Production-ready Sigma detection rules |
+| [`Investigation_Timeline.md`](./04_Log_Analysis/Investigation_Timeline.md) | Chronological reconstruction of the entire attack |
+| [`Human_vs_AI_Judgment.md`](./06_AI_Assisted_Analysis/Human_vs_AI_Judgment.md) | Where AI helped and where human judgment was essential |
 
 <br><br>
 
-## 🧠 Skills Demonstrated
+## 🧩 Skills Demonstrated
 
-`SOC Analysis` `Email Forensics` `Phishing Investigation` `SMTP Protocol` `IOC Extraction`  
-`Threat Intelligence` `VirusTotal` `MITRE ATT&CK` `Incident Response` `IR Report Writing`  
-`SPF / DKIM / DMARC` `Firewall Configuration` `VirtualBox Lab Build` `hMailServer`  
-`swaks` `Windows Server 2022` `Kali Linux` `Blue Team Operations`
+`SOC Analysis` `Email Forensics` `Phishing Investigation` `SMTP Protocol` `Wireshark` `PCAP Analysis`
+`Sysmon` `Windows Event Logs` `DNS Configuration` `SPF / DKIM / DMARC` `IOC Extraction`
+`Threat Intelligence` `VirusTotal` `MITRE ATT&CK` `Sigma Rules` `SIEM Query Writing`
+`Incident Response` `IR Report Writing` `Remediation Planning` `AI-Assisted SOC Analysis`
+`hMailServer` `swaks` `Kali Linux` `Windows Server 2022` `VirtualBox` `Blue Team Operations`
 
 <br><br>
 
 ## 👩‍💻 About the Analyst
 
-**Priyanka Rane**  
-SOC Analyst L1 | Threat Detection & Incident Response  
+**Priyanka Rane**
+SOC Analyst (Entry Level) | Blue Team | Threat Detection & Incident Response
 
-📧 ranepriyanka567@gmail.com  
-🔗 [LinkedIn](https://www.linkedin.com/in/priyanka-rane-606a71257/)  
+🎓 BSc Information Technology
+🏅 Certified Ethical Hacker v13 AI (CEHv13 AI)
+🏅 eLearnSecurity Network Penetration Tester (eNPT)
+📍 Mumbai, India
+
+📧 ranepriyanka567@gmail.com
+🔗 [LinkedIn](https://www.linkedin.com/in/priyanka-rane-606a71257/)
 🐙 [GitHub](https://github.com/priyanka-sec)
+
+<br><br>
+
+## ⚡ How to Use This Repository
+
+**If you are a recruiter or hiring manager:**
+Start with [`07_Incident_Response/SOC_Incident_Report.md`](./07_Incident_Response/SOC_Incident_Report.md) — it summarises the entire investigation in enterprise report format.
+
+**If you are a SOC professional reviewing the technical work:**
+Start with [`03_Email_Investigation/Email_Header_Analysis.md`](./03_Email_Investigation/Email_Header_Analysis.md) then follow through `04_Log_Analysis/` and `05_Detection_Engineering/`.
+
+**If you are a fellow learner wanting to reproduce this lab:**
+Start with [`01_Lab_Infrastructure/Lab_Setup_Guide.md`](./01_Lab_Infrastructure/Lab_Setup_Guide.md) — every step is documented for reproducibility.
+
+**If you are interested in AI in SOC:**
+Start with [`06_AI_Assisted_Analysis/AI_in_SOC_Overview.md`](./06_AI_Assisted_Analysis/AI_in_SOC_Overview.md).
 
 <br><br>
 
 <div align="center">
 
-*This project demonstrates a realistic SOC investigation workflow for analysing and responding to a phishing email incident in an enterprise environment.*
+*This project was built as a practical demonstration of SOC analyst skills —*
+*from lab construction through attack simulation to enterprise incident reporting.*
+
+*Every artifact in this repository was generated from a real lab environment,*
+*not simulated or copied from tutorials.*
 
 </div>
